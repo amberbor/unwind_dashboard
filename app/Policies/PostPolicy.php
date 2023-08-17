@@ -13,7 +13,7 @@ class PostPolicy
      */
     public function viewAny(User $user): bool
     {
-        if ($user->hasRole(['admin', 'event_planner']) || $user->hasPermissionTo('Create Post')){
+        if ($user->hasRole(['admin', 'eventplanner']) || $user->hasPermissionTo('Create Post')){
             return true;
         }
         return false;
@@ -25,7 +25,7 @@ class PostPolicy
      */
     public function view(User $user, Post $post): bool
     {
-        if ($user->hasRole(['admin', 'event_planner']) || $user->hasPermissionTo('View Posts')){
+        if ($user->hasRole(['admin', 'eventplanner']) || $user->hasPermissionTo('View Posts')){
             return true;
         }
         return false;
@@ -37,7 +37,7 @@ class PostPolicy
      */
     public function create(User $user): bool
     {
-        if ($user->hasRole(['admin', 'event_planner']) || $user->hasPermissionTo('Create Posts')){
+        if ($user->hasRole(['admin', 'eventplanner']) || $user->hasPermissionTo('Create Posts')){
             return true;
         }
         return false;
@@ -48,7 +48,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post): bool
     {
-        if ($user->hasRole(['admin', 'event_planner']) || $user->hasPermissionTo('Edit Posts')){
+        if ($user->hasRole(['admin', 'eventplanner']) || $user->hasPermissionTo('Edit Posts')){
             return true;
         }
         return false;
@@ -60,7 +60,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post): bool
     {
-        if ($user->hasRole(['admin', 'event_planner']) || $user->hasPermissionTo('Delete Posts')){
+        if ($user->hasRole(['admin', 'eventplanner']) || $user->hasPermissionTo('Delete Posts')){
             return true;
         }
         return false;
