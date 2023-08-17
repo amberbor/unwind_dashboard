@@ -15,4 +15,9 @@ class Post extends Model
         'location',
         'event_time',
     ];
+
+     public function users()
+    {
+        return $this->belongsToMany(User::class, 'users_posts');
+    }
 }

@@ -49,7 +49,10 @@ class User extends Authenticatable implements FilamentUser
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, 'users_posts');
+    }
     public function canAccessFilament(): bool
     {
         return $this->hasRole(['admin', 'event-planner']);
