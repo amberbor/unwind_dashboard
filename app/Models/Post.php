@@ -36,7 +36,6 @@ class RoleBasedScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
         $user = Auth::user(); // Get the logged-in user
-
         if (!$user || !$user->hasRole('admin')) {
             $builder->whereHas('users', function (Builder $query) use ($user) {
                 $query->where('users.id', $user->id);
