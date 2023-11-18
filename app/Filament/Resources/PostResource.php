@@ -30,6 +30,8 @@ class PostResource extends Resource
             ->schema([
                 Card::make()->schema([
                     Forms\Components\FileUpload::make('photo')->image()
+                        ->disk('cloudinary')
+                        ->visibility('public')
                         ->required(),
                     Forms\Components\Textarea::make('description')
                         ->rows(10)

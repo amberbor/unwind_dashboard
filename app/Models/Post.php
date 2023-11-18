@@ -43,3 +43,12 @@ class RoleBasedScope implements Scope
         }
     }
 }
+//use Cloudinary\Configuration\Configuration;
+//
+//Configuration::instance([
+//  'cloud' => [
+//    'cloud_name' => 'dqmjatfqz',
+//    'api_key' => '719444776498496',
+//    'api_secret' => 'x6y_LAtPUsixeVIwW5K_s2NLhiQ'],
+//  'url' => [
+//    'secure' => true]]);

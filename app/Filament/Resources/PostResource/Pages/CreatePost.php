@@ -4,8 +4,11 @@ namespace App\Filament\Resources\PostResource\Pages;
 
 use App\Filament\Resources\PostResource;
 use App\Models\Post;
+use CloudinaryLabs\CloudinaryLaravel\CloudinaryEngine;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Validation\ValidationException;
 
 class CreatePost extends CreateRecord
 {
@@ -25,13 +28,21 @@ public function createAnother(): void
 }
   protected function handleRecordCreation(array $data): \Illuminate\Database\Eloquent\Model
   {
-    $post = Post::create($data);
+      $filename = $data['photo'];
+      $pathInfo = pathinfo($filename);
 
-    // Add logic to attach the post to the user
-    $user = auth()->user(); // Assuming you have authentication
-    $user->posts()->attach($post);
+      $cloudinaryEngine = new CloudinaryEngine();
+      $filenameWithoutExtension = $pathInfo['filename'];
 
-    return $post;
+
+      $cloudinaryUrl = $cloudinaryEngine->getUrl($filenameWithoutExtension);
+      $data['photo'] = $cloudinaryUrl;
+
+      $post = Post::create($data);
+      $user = auth()->user();
+      $user->posts()->attach($post);
+
+      return $post;
 }
 
 }
